@@ -1,40 +1,59 @@
 window.addEventListener("deviceorientation", handleOrientation, true);
 
-function handleOrientation(event) {
-    let absolute = event.absolute;
-    let alpha    = event.alpha;
-    let beta     = event.beta;
-    let gamma    = event.gamma;
-  }
 
 let kuleczka   = document.querySelector('#kuleczka');
 let stol = document.querySelector('#stol');
 let output = document.querySelector('#output');
 
-let maxX = stol.clientWidth  - kuleczka.clientWidth;
-let maxY = stol.clientHeight - kuleczka.clientHeight;
+function handleOrientation() {
+    
+  let beta = event.beta; // góra dół
+  let gamma = event.gamma; // lewo- prawo
 
-function handleOrientation(event) {
-  let x = event.beta;  // In degree in the range [-180,180]
-  let y = event.gamma; // In degree in the range [-90,90]
+  output.innerHTML = "beta :" + beta + "\n";
+  output.innerHTML = "gamma :" + gamma + "\n";
 
-  output.innerHTML  = "beta : " + x + "\n";
-  output.innerHTML += "gamma: " + y + "\n";
+  if(beta > 90) {
+      beta = 90;
+  }
+  if(beta < -90) {
+      beta = -90;
+  }
 
-  // Because we don't want to have the device upside down
-  // We constrain the x value to the range [-90,90]
-  if (x >  90) { x =  90};
-  if (x < -90) { x = -90};
+  beta += 90;
+  gamma += 90;
+  //where ball can move
+  ball.style.top  = (xMax*beta/90 - 15) + "px";
+  ball.style.left = (yMax*gamma/90 - 15) + "px";
 
-  // To make computation easier we shift the range of 
-  // x and y to [0,180]
-  x += 90;
-  y += 90;
+  //barrier on the field ball can't cross
+  if(ball.style.top < 15) {
+      ball.style.top = 15;
+  }
+  if(ball.style.bottom < 15) {
+      ball.style.bottom = 15;
+  }
+  if(ball.style.right < 15) {
+      ball.style.right = 15;
+  }
+  if(ball.style.left < 15) {
+      ball.style.left = 15;
+  }
+}
+//motion of phone
+window.addEventListener('devicemotion', handleMotion, true);
 
-  // 10 is half the size of the kuleczka
-  // It center the positioning point to the center of the kuleczka
-  kuleczka.style.top  = (maxX*x/180 - 10) + "px";
-  kuleczka.style.left = (maxY*y/180 - 10) + "px";
+function handleMotion() {
+
 }
 
-window.addEventListener('deviceorientation', handleOrientation);
+function koniec() {
+  let dziura = document.querySelector('.dziura');
+  let pozycjaDziury = dziura.getBoundingClientRect();
+  let pozycjaKulki = ball.getBoundingClientRect();
+
+  if((pozycjaKulki.top <= pozycjaDziury.top) && (pozycjaKulki.bottom >= pozycjaDziury.bottom) && (pozycjaKulki.left >= pozycjaDziury.left) &&
+  (pozycjaKulki.right <= pozycjaDziury.right)) {
+      alert("Koniec");
+  }
+}
