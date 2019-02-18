@@ -5,6 +5,9 @@ let kuleczka   = document.querySelector('#kuleczka');
 let stol = document.querySelector('#stol');
 let output = document.querySelector('#output');
 
+let xMax = area.clientWidth - ball.clientWidth;
+let yMax = area.clientHeight - ball.clientHeight;
+
 function handleOrientation() {
     
   let beta = event.beta; // góra dół
