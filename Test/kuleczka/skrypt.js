@@ -1,9 +1,9 @@
 window.addEventListener("deviceorientation", handleOrientation, true);
 
 
-let kuleczka   = document.querySelector('#kuleczka');
-let stol = document.querySelector('#stol');
-let output = document.querySelector('#output');
+let kuleczka   = document.querySelector('.kuleczka');
+let stol = document.querySelector('.stol');
+let output = document.querySelector('.output');
 
 function handleOrientation() {
     
@@ -50,7 +50,7 @@ function handleMotion() {
 function koniec() {
   let dziura = document.querySelector('.dziura');
   let pozycjaDziury = dziura.getBoundingClientRect();
-  let pozycjaKulki = ball.getBoundingClientRect();
+  let pozycjaKulki = kuleczka.getBoundingClientRect();
 
   if((pozycjaKulki.top <= pozycjaDziury.top) && (pozycjaKulki.bottom >= pozycjaDziury.bottom) && (pozycjaKulki.left >= pozycjaDziury.left) &&
   (pozycjaKulki.right <= pozycjaDziury.right)) {
