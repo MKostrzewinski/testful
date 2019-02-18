@@ -1,12 +1,12 @@
 window.addEventListener("deviceorientation", handleOrientation, true);
 
 
-let kuleczka   = document.querySelector('#kuleczka');
-let stol = document.querySelector('#stol');
-let output = document.querySelector('#output');
+let kuleczka   = document.querySelector('.kuleczka');
+let stol = document.querySelector('.stol');
+let output = document.querySelector('.output');
 
-let xMax = area.clientWidth - ball.clientWidth;
-let yMax = area.clientHeight - ball.clientHeight;
+let xMax = area.clientWidth - kuleczka.clientWidth;
+let yMax = area.clientHeight - kuleczka.clientHeight;
 
 function handleOrientation() {
     
