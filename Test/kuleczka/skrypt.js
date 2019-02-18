@@ -5,8 +5,8 @@ let kuleczka   = document.querySelector('.kuleczka');
 let stol = document.querySelector('.stol');
 let output = document.querySelector('.output');
 
-let xMax = stol.clientWidth - kuleczka.clientWidth;
-let yMax = stol.clientHeight - kuleczka.clientHeight;
+let xMax = area.clientWidth - kuleczka.clientWidth;
+let yMax = area.clientHeight - kuleczka.clientHeight;
 
 function handleOrientation() {
     
