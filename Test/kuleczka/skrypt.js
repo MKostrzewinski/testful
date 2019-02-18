@@ -1,9 +1,9 @@
 window.addEventListener("deviceorientation", handleOrientation, true);
 
 
-let kuleczka   = document.querySelector('.kuleczka');
-let stol = document.querySelector('.stol');
-let output = document.querySelector('.output');
+let kuleczka   = document.querySelector('#kuleczka');
+let stol = document.querySelector('#stol');
+let output = document.querySelector('#output');
 
 function handleOrientation() {
     
@@ -22,22 +22,22 @@ function handleOrientation() {
 
   beta += 90;
   gamma += 90;
-  //where ball can move
-  ball.style.top  = (xMax*beta/90 - 15) + "px";
-  ball.style.left = (yMax*gamma/90 - 15) + "px";
+  //where kuleczka can move
+  kuleczka.style.top  = (xMax*beta/90 - 15) + "px";
+  kuleczka.style.left = (yMax*gamma/90 - 15) + "px";
 
-  //barrier on the field ball can't cross
-  if(ball.style.top < 15) {
-      ball.style.top = 15;
+  //barrier on the field kuleczka can't cross
+  if(kuleczka.style.top < 15) {
+      kuleczka.style.top = 15;
   }
-  if(ball.style.bottom < 15) {
-      ball.style.bottom = 15;
+  if(kuleczka.style.bottom < 15) {
+      kuleczka.style.bottom = 15;
   }
-  if(ball.style.right < 15) {
-      ball.style.right = 15;
+  if(kuleczka.style.right < 15) {
+      kuleczka.style.right = 15;
   }
-  if(ball.style.left < 15) {
-      ball.style.left = 15;
+  if(kuleczka.style.left < 15) {
+      kuleczka.style.left = 15;
   }
 }
 //motion of phone
