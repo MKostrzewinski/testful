@@ -1,62 +1,49 @@
-window.addEventListener("deviceorientation", handleOrientation, true);
-
-
-let kuleczka   = document.querySelector('.kuleczka');
-let stol = document.querySelector('.stol');
+let ball   = document.querySelector('.ball');
+let hole   = document.querySelector('.hole');
+let garden = document.querySelector('.garden');
 let output = document.querySelector('.output');
 
-let xMax = stol.clientWidth - kuleczka.clientWidth;
-let yMax = stol.clientHeight - kuleczka.clientHeight;
+let czasStart = Date.now();
 
-function handleOrientation() {
-    
-  let beta = event.beta; // góra dół
-  let gamma = event.gamma; // lewo- prawo
+let maxX = garden.clientWidth  - ball.clientWidth;
+let maxY = garden.clientHeight - ball.clientHeight;
 
-  output.innerHTML = "beta :" + beta + "\n";
-  output.innerHTML = "gamma :" + gamma + "\n";
+function handleOrientation(event) {
+  let x = event.beta;  // In degree in the range [-180,180]
+  let y = event.gamma; // In degree in the range [-90,90]
 
-  if(beta > 90) {
-      beta = 90;
-  }
-  if(beta < -90) {
-      beta = -90;
-  }
+  output.innerHTML  = "beta : " + x + "\n";
+  output.innerHTML += "gamma: " + y + "\n";
 
-  beta += 90;
-  gamma += 90;
-  //where kuleczka can move
-  kuleczka.style.top  = (xMax*beta/90 - 15) + "px";
-  kuleczka.style.left = (yMax*gamma/90 - 15) + "px";
+  // Because we don't want to have the device upside down
+  // We constrain the x value to the range [-90,90]
+  if (x >  90) { x =  90};
+  if (x < -90) { x = -90};
 
-  //barrier on the field kuleczka can't cross
-  if(kuleczka.style.top < 15) {
-      kuleczka.style.top = 15;
-  }
-  if(kuleczka.style.bottom < 15) {
-      kuleczka.style.bottom = 15;
-  }
-  if(kuleczka.style.right < 15) {
-      kuleczka.style.right = 15;
-  }
-  if(kuleczka.style.left < 15) {
-      kuleczka.style.left = 15;
-  }
-}
-//motion of phone
-window.addEventListener('devicemotion', handleMotion, true);
+  // To make computation easier we shift the range of 
+  // x and y to [0,180]
+  x += 90;
+  y += 90;
 
-function handleMotion() {
-
+  // 10 is half the size of the ball
+  // It center the positioning point to the center of the ball
+  ball.style.top  = (maxX*x/180 - 10) + "px";
+  ball.style.left = (maxY*y/180 - 10) + "px";
 }
 
-function koniec() {
-  let dziura = document.querySelector('.dziura');
-  let pozycjaDziury = dziura.getBoundingClientRect();
-  let pozycjaKulki = kuleczka.getBoundingClientRect();
+function koniec(){
 
-  if((pozycjaKulki.top <= pozycjaDziury.top) && (pozycjaKulki.bottom >= pozycjaDziury.bottom) && (pozycjaKulki.left >= pozycjaDziury.left) &&
-  (pozycjaKulki.right <= pozycjaDziury.right)) {
-      alert("Koniec");
+  let ballPosition = ball.getBoundingClientRect();
+  let holePosition = hole.getBoundingClientRect();
+
+
+  if((ballPosition.top <= holePosition.top) && (ballPosition.bottom >= holePosition.bottom) && (ballPosition.left >= holePosition.left) &&
+  (ballPosition.right <= holePosition.right)) {
+      czas = Date.now() - czasStart;
+      alert("Wygrana! \n Twój czas : " + czas);
   }
 }
+
+
+
+window.addEventListener('deviceorientation', handleOrientation);
