@@ -44,7 +44,7 @@ function handleOrientation(event) {
     }
 }
 
-function koniec(){
+
 
   let ballPosition = ball.getBoundingClientRect();
   let holePosition = hole.getBoundingClientRect();
@@ -55,7 +55,7 @@ function koniec(){
       czas = Date.now() - czasStart;
       alert("Wygrana! \n Twój czas : " + czas);
   }
-}
+
 
 
 
