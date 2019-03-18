@@ -12,7 +12,7 @@ function handleOrientation(event) {
   let x = event.beta;  
   let y = event.gamma; 
 
-  output.innerHTML  = "tak";
+  output.innerHTML  = "beta : " + x + "\n";
   output.innerHTML += "gamma: " + y + "\n";
 
 
@@ -37,6 +37,7 @@ function handleOrientation(event) {
     if(ball.style.left < 10) {
         ball.style.left = 10;       
     }
+    koniec()
 }
 function koniec(){
 
@@ -51,5 +52,11 @@ function koniec(){
     }
   
 }
+
+
+
+
+
+
 
 window.addEventListener('deviceorientation', handleOrientation);
