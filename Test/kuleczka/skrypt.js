@@ -46,10 +46,18 @@ function handleOrientation(event) {
     let holePosition = hole.getBoundingClientRect();
   
   
-    if((ballPosition.top <= holePosition.top) && (ballPosition.bottom >= holePosition.bottom) && (ballPosition.left >= holePosition.left) &&
-    (ballPosition.right <= holePosition.right)) {
-        let czas = Date.now() - czasStart;
-        alert("Wygrana! \n Twój czas : " + czas);
+    function koniec(){
+
+        let ballPosition = ball.getBoundingClientRect();
+        let holePosition = hole.getBoundingClientRect();
+      
+      
+        if((ballPosition.top <= holePosition.top) && (ballPosition.bottom >= holePosition.bottom) && (ballPosition.left >= holePosition.left) &&
+        (ballPosition.right <= holePosition.right)) {
+            czas = Date.now() - czasStart;
+            alert("Wygrana! \n Twój czas : " + czas);
+        }
+      
     }
 }
 
