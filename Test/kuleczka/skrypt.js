@@ -1,7 +1,6 @@
 let ball   = document.querySelector('.ball');
 let hole   = document.querySelector('.hole');
 let garden = document.querySelector('.garden');
-let output = document.querySelector('.output');
 
 let czasStart = Date.now();
 
