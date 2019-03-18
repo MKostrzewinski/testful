@@ -37,19 +37,21 @@ function handleOrientation(event) {
     if(ball.style.left < 10) {
         ball.style.left = 10;       
     }
-}
-function koniec(){
 
-    let ballPosition = ball.getBoundingClientRect();// zwraca rozmiar elementu ball
-    let holePosition = hole.getBoundingClientRect();// zwraca rozmiar elementu hole
-  
-  
     if((ballPosition.top <= holePosition.top) && (ballPosition.bottom >= holePosition.bottom) && (ballPosition.left >= holePosition.left) &&
     (ballPosition.right <= holePosition.right)) {
         czas = Date.now() - czasStart;
         alert("Wygrana! \n Twój czas : " + czas);
     }
-  
 }
+//function koniec(){
+
+    //let ballPosition = ball.getBoundingClientRect();// zwraca rozmiar elementu ball
+    ////let holePosition = hole.getBoundingClientRect();// zwraca rozmiar elementu hole
+  
+  
+
+  
+//}
 
 window.addEventListener('deviceorientation', handleOrientation);
