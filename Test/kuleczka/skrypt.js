@@ -27,8 +27,8 @@ function handleOrientation(event) {
 
   // 10 is half the size of the ball
   // It center the positioning point to the center of the ball
-  ball.style.top  = (maxX*x/90 - 10) + "px";
-  ball.style.left = (maxY*y/90 - 10) + "px";
+  ball.style.top  = (maxX*x/90 - 1) + "px";
+  ball.style.left = (maxY*y/90 - 1) + "px";
   
    if(ball.style.top < 10) {
         ball.style.top = 10;
@@ -42,19 +42,20 @@ function handleOrientation(event) {
     if(ball.style.left < 10) {
         ball.style.left = 10;
     }
+    let ballPosition = ball.getBoundingClientRect();
+    let holePosition = hole.getBoundingClientRect();
+  
+  
+    if((ballPosition.top <= holePosition.top) && (ballPosition.bottom >= holePosition.bottom) && (ballPosition.left >= holePosition.left) &&
+    (ballPosition.right <= holePosition.right)) {
+        let czas = Date.now() - czasStart;
+        alert("Wygrana! \n Twój czas : " + czas);
+    }
 }
 
 
 
-  let ballPosition = ball.getBoundingClientRect();
-  let holePosition = hole.getBoundingClientRect();
 
-
-  if((ballPosition.top <= holePosition.top) && (ballPosition.bottom >= holePosition.bottom) && (ballPosition.left >= holePosition.left) &&
-  (ballPosition.right <= holePosition.right)) {
-      czas = Date.now() - czasStart;
-      alert("Wygrana! \n Twój czas : " + czas);
-  }
 
 
 
