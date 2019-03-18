@@ -22,8 +22,8 @@ function handleOrientation(event) {
   x += 90;
   y += 90;
 
-  ball.style.top  = (maxY*y/90 - 10) + "px";
-  ball.style.left = (maxX*x/90 - 10) + "px";
+  ball.style.top  = (maxY*y/90 - 1) + "px";
+  ball.style.left = (maxX*x/90 - 1) + "px";
   
    if(ball.style.top < 10) {
         ball.style.top = 10;
