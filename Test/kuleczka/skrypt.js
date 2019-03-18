@@ -37,7 +37,6 @@ function handleOrientation(event) {
     if(ball.style.left < 10) {
         ball.style.left = 10;       
     }
-    koniec()
 }
 function koniec(){
 
@@ -52,11 +51,5 @@ function koniec(){
     }
   
 }
-
-
-
-
-
-
 
 window.addEventListener('deviceorientation', handleOrientation);
